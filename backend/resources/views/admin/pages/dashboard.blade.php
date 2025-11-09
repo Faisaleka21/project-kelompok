@@ -173,58 +173,5 @@
             </div>
         </div>
 
-        <div class="teacher-form-section" style="margin-bottom: 40px;">
-            <h3>Add New Teacher</h3>
-            <form  method="POST" class="teacher-form" style="max-width: 500px;">
-                @csrf
-                <div class="form-group" style="margin-bottom: 15px;">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" required class="form-control" style="width:100%;padding:8px;">
-                </div>
-                <div class="form-group" style="margin-bottom: 15px;">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required class="form-control" style="width:100%;padding:8px;">
-                </div>
-                <div class="form-group" style="margin-bottom: 15px;">
-                    <label for="subject">Subject</label>
-                    <input type="text" id="subject" name="subject" required class="form-control" style="width:100%;padding:8px;">
-                </div>
-                <button type="submit" class="btn btn-primary" style="padding:10px 20px;">Add Teacher</button>
-            </form>
-        </div>
-
-        <div class="teacher-table-section" style="margin-bottom: 40px;">
-            <h3>Teacher List</h3>
-            <table class="table" style="width:100%; border-collapse: collapse;">
-                <thead style="background:#f5f5f5;">
-                    <tr>
-                        <th style="padding:10px; border:1px solid #ccc;">No</th>
-                        <th style="padding:10px; border:1px solid #ccc;">Name</th>
-                        <th style="padding:10px; border:1px solid #ccc;">Email</th>
-                        <th style="padding:10px; border:1px solid #ccc;">Subject</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td style="padding:10px; border:1px solid #ccc;">1</td>
-                        <td style="padding:10px; border:1px solid #ccc;">John Doe</td>
-                        <td style="padding:10px; border:1px solid #ccc;">john.doe@example.com</td>
-                        <td style="padding:10px; border:1px solid #ccc;">Mathematics</td>
-                    </tr>
-                    <tr>
-                        <td style="padding:10px; border:1px solid #ccc;">2</td>
-                        <td style="padding:10px; border:1px solid #ccc;">Jane Smith</td>
-                        <td style="padding:10px; border:1px solid #ccc;">jane.smith@example.com</td>
-                        <td style="padding:10px; border:1px solid #ccc;">Physics</td>
-                    </tr>
-                    <tr>
-                        <td style="padding:10px; border:1px solid #ccc;">3</td>
-                        <td style="padding:10px; border:1px solid #ccc;">Michael Johnson</td>
-                        <td style="padding:10px; border:1px solid #ccc;">michael.j@example.com</td>
-                        <td style="padding:10px; border:1px solid #ccc;">English</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
 
 @endsection

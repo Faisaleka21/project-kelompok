@@ -35,6 +35,7 @@ body {
     padding: 20px 0;
     box-shadow: var(--card-shadow);
     z-index: 100;
+    overflow-y: auto;
 }
 
 .logo {
