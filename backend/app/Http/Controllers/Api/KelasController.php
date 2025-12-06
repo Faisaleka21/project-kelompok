@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Kelas;
 use Illuminate\Http\Request;
 
 class KelasController extends Controller
@@ -13,7 +14,12 @@ class KelasController extends Controller
     public function index()
     {
         //
-        try{
+        try{ 
+            $kelas = Kelas::all();
+            return response()->json([
+                'type'=>'succes',
+                'data'=>$kelas,
+            ],201);
 
         }catch(\Exception $e){
             return response()->json([

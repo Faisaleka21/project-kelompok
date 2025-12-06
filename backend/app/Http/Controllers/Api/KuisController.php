@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Kuis;
 use Illuminate\Http\Request;
 
 class KuisController extends Controller
@@ -14,6 +15,11 @@ class KuisController extends Controller
     {
         //
         try{
+            $kuis = Kuis::all();
+            return response()->json([
+                'type'=>'succes',
+                'data'=>$kuis,
+            ],201);
 
         }catch(\Exception $e){
             return response()->json([
@@ -94,6 +100,7 @@ class KuisController extends Controller
     {
         //
         try{
+           
 
         }catch(\Exception $e){
             return response()->json([

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Materi;
 use Illuminate\Http\Request;
 
 class MateriController extends Controller
@@ -14,6 +15,11 @@ class MateriController extends Controller
     {
         //
         try{
+            $materi = Materi::all();
+            return response()->json([
+                'type'=>'succes',
+                'data'=>$materi,
+            ],201);
 
         }catch(\Exception $e){
             return response()->json([
@@ -94,6 +100,7 @@ class MateriController extends Controller
     {
         //
         try{
+            
 
         }catch(\Exception $e){
             return response()->json([

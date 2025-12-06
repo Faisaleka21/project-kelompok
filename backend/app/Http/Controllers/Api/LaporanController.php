@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Laporan;
 use Illuminate\Http\Request;
 
 class LaporanController extends Controller
@@ -14,6 +15,11 @@ class LaporanController extends Controller
     {
         //
         try{
+            $laporan = Laporan::all();
+            return response()->json([
+                'type'=>'succes',
+                'data'=>$laporan,
+            ],201);
 
         }catch(\Exception $e){
             return response()->json([
@@ -102,6 +108,7 @@ class LaporanController extends Controller
     {
         //
         try{
+            
 
         }catch(\Exception $e){
             return response()->json([

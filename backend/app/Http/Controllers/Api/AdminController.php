@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -14,6 +15,11 @@ class AdminController extends Controller
     {
         //
         try{
+            $admin = Admin::all();
+            return response()->json([
+                'type'=>'succes',
+                'data'=>$admin,
+            ],201);
 
         }catch(\Exception $e){
             return response()->json([

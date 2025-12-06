@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Siswa;
 use Illuminate\Http\Request;
 
 class SiswaController extends Controller
@@ -14,6 +15,11 @@ class SiswaController extends Controller
     {
         //
         try{
+            $siswa = Siswa::all();
+            return response()->json([
+                'type'=>'succes',
+                'data'=>$siswa,
+            ],201);
 
         }catch(\Exception $e){
             return response()->json([

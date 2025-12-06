@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Nilai;
 use Illuminate\Http\Request;
 
 class NilaiController extends Controller
@@ -14,6 +15,11 @@ class NilaiController extends Controller
     {
         //
         try{
+            $nilai = Nilai::all();
+            return response()->json([
+                'type'=>'succes',
+                'data'=>$nilai,
+            ],201);
 
         }catch(\Exception $e){
             return response()->json([

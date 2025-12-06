@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Guru;
 use Illuminate\Http\Request;
 
 class GuruController extends Controller
@@ -14,6 +15,11 @@ class GuruController extends Controller
     {
         //
         try{
+            $guru = Guru::all();
+            return response()->json([
+                'type'=>'succes',
+                'data'=>$guru,
+            ],201);
 
         }catch(\Exception $e){
             return response()->json([
