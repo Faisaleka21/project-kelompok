@@ -4,10 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class biodata extends Model
+class Admin extends Model
 {
     //
-    protected $guarded = ['id'];
-
-    
+    protected $guarded = ['Id_admin'];
 }
