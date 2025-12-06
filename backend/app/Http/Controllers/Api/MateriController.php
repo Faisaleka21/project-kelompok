@@ -13,6 +13,14 @@ class MateriController extends Controller
     public function index()
     {
         //
+        try{
+
+        }catch(\Exception $e){
+            return response()->json([
+                'message'=>$e->getMessage(),
+                'data'=>null
+            ],401);
+        }
     }
 
     /**
@@ -29,6 +37,14 @@ class MateriController extends Controller
     public function store(Request $request)
     {
         //
+        try{
+
+        }catch(\Exception $e){
+            return response()->json([
+                'message'=>$e->getMessage(),
+                'data'=>null
+            ],401);
+        }
     }
 
     /**
@@ -37,6 +53,14 @@ class MateriController extends Controller
     public function show(string $id)
     {
         //
+        try{
+
+        }catch(\Exception $e){
+            return response()->json([
+                'message'=>$e->getMessage(),
+                'data'=>null
+            ],401);
+        }
     }
 
     /**
@@ -53,6 +77,14 @@ class MateriController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        try{
+
+        }catch(\Exception $e){
+            return response()->json([
+                'message'=>$e->getMessage(),
+                'data'=>null
+            ],401);
+        }
     }
 
     /**
@@ -61,5 +93,13 @@ class MateriController extends Controller
     public function destroy(string $id)
     {
         //
+        try{
+
+        }catch(\Exception $e){
+            return response()->json([
+                'message'=>$e->getMessage(),
+                'data'=>null
+            ],401);
+        }
     }
 }

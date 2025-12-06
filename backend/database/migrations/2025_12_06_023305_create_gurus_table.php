@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('gurus', function (Blueprint $table) {
             $table->id('Id_guru');
-            $table->string('Email');
+            $table->string('Email')->unique();
             $table->string('Password'); //disetting int/numeric di controller
             $table->string('Nama_guru');
             $table->string('Bidang_studi');

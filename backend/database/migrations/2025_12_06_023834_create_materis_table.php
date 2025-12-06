@@ -19,7 +19,7 @@ return new class extends Migration
                     ->onDelete('restrict');
             $table->string('Judul_materi');
             $table->text('Deskripsi');
-            $table->string('Tipe_file');
+            $table->enum('Tipe_file',['pdf','']);
             $table->string('File_path');
             $table->date('Tgl_upload');
             $table->timestamps();
