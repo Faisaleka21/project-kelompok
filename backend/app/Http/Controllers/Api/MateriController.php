@@ -44,6 +44,19 @@ class MateriController extends Controller
     {
         //
         try{
+            $validate = $request->validate([
+                'Id_kelas' => 'required|exists:kelas,Id_kelas',
+                'Judul_materi' => 'required|string|max:255',
+                'Deskripsi' => 'required|text|max:255',
+                'Tipe_file' => 'required|enum:pdf,docx,pptx,video',
+                'File_path' => 'required|string|max:255',
+                'Tgl_upload' => 'required|date',
+            ]);
+            $materi = Materi::create($validate);
+            return response()->json([
+                'type'=>'succes',
+                'data'=>$materi,
+            ],201);
 
         }catch(\Exception $e){
             return response()->json([
@@ -60,6 +73,11 @@ class MateriController extends Controller
     {
         //
         try{
+            $materi = Materi::findOrFail($id);
+            return response()->json([
+                'type'=>'succes',
+                'data'=>$materi,
+            ],201);
 
         }catch(\Exception $e){
             return response()->json([
@@ -84,6 +102,20 @@ class MateriController extends Controller
     {
         //
         try{
+            $materi = Materi::findOrFail($id);
+            $validate = $request->validate([
+                'Id_kelas' => 'required|exists:kelas,Id_kelas',
+                'Judul_materi' => 'required|string|max:255',
+                'Deskripsi' => 'required|text|max:255',
+                'Tipe_file' => 'required|enum:pdf,docx,pptx,video',
+                'File_path' => 'required|string|max:255',
+                'Tgl_upload' => 'required|date',
+            ]);
+            $materi->update($validate);
+            return response()->json([
+                'type'=>'succes',
+                'data'=>$materi,
+            ],201);
 
         }catch(\Exception $e){
             return response()->json([
@@ -100,7 +132,12 @@ class MateriController extends Controller
     {
         //
         try{
-            
+            $materi = Materi::findOrFail($id);
+            $materi->delete();
+            return response()->json([
+                'type'=>'succes',
+                'data'=>$materi,
+            ],202);
 
         }catch(\Exception $e){
             return response()->json([

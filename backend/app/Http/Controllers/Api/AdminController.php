@@ -44,6 +44,15 @@ class AdminController extends Controller
     {
         //
         try{
+            $validate = $request->validate([
+                'Username' => 'required|string|max:255',
+                'Password' => 'required|string|max:255',
+            ]);
+            $admin = Admin::create($validate);
+            return response()->json([
+                'type'=>'succes',
+                'data'=>$admin,
+            ],201);
 
         }catch(\Exception $e){
             return response()->json([
@@ -60,6 +69,11 @@ class AdminController extends Controller
     {
         //
         try{
+            $admin = Admin::findOrFail($id);
+            return response()->json([
+                'type'=>'succes',
+                'data'=>$admin,
+            ],201);
 
         }catch(\Exception $e){
             return response()->json([
@@ -83,7 +97,17 @@ class AdminController extends Controller
     public function update(Request $request, string $id)
     {
         //
-        try{
+        try{    
+            $admin = Admin::findOrFail($id);
+            $validate = $request->validate([
+                'Username' => 'required|string|max:255',
+                'Password' => 'required|string|max:255',
+            ]);
+            $admin->update($validate);
+            return response()->json([
+                'type'=>'succes',
+                'data'=>$admin,
+            ],201);
 
         }catch(\Exception $e){
             return response()->json([
@@ -100,6 +124,12 @@ class AdminController extends Controller
     {
         //
         try{
+            $admin = Admin::findOrFail($id);
+            $admin->delete();
+            return response()->json([
+                'type'=>'succes',
+                'data'=>$admin,
+            ],201);
 
         }catch(\Exception $e){
             return response()->json([

@@ -44,6 +44,19 @@ class SiswaController extends Controller
     {
         //
         try{
+            $validate = $request->validate([
+                'Nama_siswa' => 'required|string|max:255',
+                'Email' => 'required|email|unique:siswas',
+                'Password' => 'required|integer|max:11',
+                'Tgl_lahir' => 'required|date',
+                'Alamat' => 'required|text|max:255',
+                'No_hp' => 'required|integer|max:11',
+            ]);
+            $siswa = Siswa::create($validate);
+            return response()->json([
+                'type'=>'succes',
+                'data'=>$siswa,
+            ],201);
 
         }catch(\Exception $e){
             return response()->json([
@@ -60,6 +73,11 @@ class SiswaController extends Controller
     {
         //
         try{
+            $siswa = Siswa::findOrFail($id);
+            return response()->json([
+                'type'=>'succes',
+                'data'=>$siswa,
+            ],201);
 
         }catch(\Exception $e){
             return response()->json([
@@ -84,6 +102,20 @@ class SiswaController extends Controller
     {
         //
         try{
+            $siswa = Siswa::findOrFail($id);
+            $validate = $request->validate([
+                'Nama_siswa' => 'required|string|max:255',
+                'Email' => 'required|email|unique:siswas',
+                'Password' => 'required|integer|max:11',
+                'Tgl_lahir' => 'required|date',
+                'Alamat' => 'required|text|max:255',
+                'No_hp' => 'required|integer|max:11',
+            ]);
+            $siswa->update($validate);
+            return response()->json([
+                'type'=>'succes',
+                'data'=>$siswa,
+            ],201);
 
         }catch(\Exception $e){
             return response()->json([
@@ -100,6 +132,12 @@ class SiswaController extends Controller
     {
         //
         try{
+            $siswa = Siswa::findOrFail($id);
+            $siswa->delete();
+            return response()->json([
+                'type'=>'succes',
+                'data'=>$siswa,
+            ],202);
 
         }catch(\Exception $e){
             return response()->json([

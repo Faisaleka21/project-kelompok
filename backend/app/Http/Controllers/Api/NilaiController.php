@@ -44,6 +44,17 @@ class NilaiController extends Controller
     {
         //
         try{
+            $validate = $request->validate([
+                'Id_kuis' => 'required|exists:kuis,Id_kuis',
+                'Id_siswa' => 'required|exists:siswas,Id_siswa',
+                'Nilai' => 'required|integer',
+                'Tgl_nilai' => 'required|date',
+            ]);
+            $nilai = Nilai::create($validate);
+            return response()->json([
+                'type'=>'succes',
+                'data'=>$nilai,
+            ],201);
 
         }catch(\Exception $e){
             return response()->json([
@@ -60,6 +71,11 @@ class NilaiController extends Controller
     {
         //
         try{
+            $nilai = Nilai::findOrFail($id);
+            return response()->json([
+                'type'=>'succes',
+                'data'=>$nilai,
+            ],201);
 
         }catch(\Exception $e){
             return response()->json([
@@ -84,6 +100,18 @@ class NilaiController extends Controller
     {
         //
         try{
+            $nilai = Nilai::findOrFail($id);
+            $validate = $request->validate([
+                'Id_kuis' => 'required|exists:kuis,Id_kuis',
+                'Id_siswa' => 'required|exists:siswas,Id_siswa',
+                'Nilai' => 'required|integer',
+                'Tgl_nilai' => 'required|date',
+            ]);
+            $nilai->update($validate);
+            return response()->json([
+                'type'=>'succes',
+                'data'=>$nilai,
+            ],201);
 
         }catch(\Exception $e){
             return response()->json([
@@ -100,6 +128,12 @@ class NilaiController extends Controller
     {
         //
         try{
+            $nilai = Nilai::findOrFail($id);
+            $nilai->delete();
+            return response()->json([
+                'type'=>'succes',
+                'data'=>$nilai,
+            ],202);
 
         }catch(\Exception $e){
             return response()->json([

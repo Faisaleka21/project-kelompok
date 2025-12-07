@@ -44,6 +44,16 @@ class KuisController extends Controller
     {
         //
         try{
+            $validate = $request->validate([
+                'Id_materi' => 'required|exists:materis,Id_materi',
+                'Pertanyaan' => 'required|string|max:255',
+                'Jawaban' => 'required|string|max:255',
+            ]);
+            $kuis = Kuis::create($validate);
+            return response()->json([
+                'type'=>'succes',
+                'data'=>$kuis,
+            ],201);
 
         }catch(\Exception $e){
             return response()->json([
@@ -60,6 +70,11 @@ class KuisController extends Controller
     {
         //
         try{
+            $kuis = Kuis::findOrFail($id);
+            return response()->json([
+                'type'=>'succes',
+                'data'=>$kuis,
+            ],201);
 
         }catch(\Exception $e){
             return response()->json([
@@ -84,6 +99,17 @@ class KuisController extends Controller
     {
         //
         try{
+            $kuis = Kuis::findOrFail($id);
+            $validate = $request->validate([
+                'Id_materi' => 'required|exists:materis,Id_materi',
+                'Pertanyaan' => 'required|string|max:255',
+                'Jawaban' => 'required|string|max:255',
+            ]);
+            $kuis->update($validate);
+            return response()->json([
+                'type'=>'succes',
+                'data'=>$kuis,
+            ],201);
 
         }catch(\Exception $e){
             return response()->json([
@@ -100,8 +126,13 @@ class KuisController extends Controller
     {
         //
         try{
+            $kuis = Kuis::findOrFail($id);
+            $kuis->delete();
+            return response()->json([
+                'type'=>'succes',
+                'data'=>$kuis,
+            ],202);
            
-
         }catch(\Exception $e){
             return response()->json([
                 'message'=>$e->getMessage(),

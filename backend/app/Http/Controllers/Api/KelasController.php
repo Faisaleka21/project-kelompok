@@ -44,6 +44,18 @@ class KelasController extends Controller
     {
         //
         try{
+            $validate = $request->validate([
+                'Id_guru' => 'required|exists:gurus,Id_guru',
+                'Nama_kelas' => 'required|string|max:255',
+                'Kode_kelas' => 'required|string|max:255',
+                'Deskripsi' => 'required|text|max:255',
+                'Tgl_buat' => 'required|date',
+            ]);
+            $kelas = Kelas::create($validate);
+            return response()->json([
+                'type'=>'succes',
+                'data'=>$kelas,
+            ],201);
 
         }catch(\Exception $e){
             return response()->json([
@@ -60,6 +72,11 @@ class KelasController extends Controller
     {
         //
         try{
+            $kelas = Kelas::findOrFail($id);
+            return response()->json([
+                'type'=>'succes',
+                'data'=>$kelas,
+            ],201);
 
         }catch(\Exception $e){
             return response()->json([
@@ -84,6 +101,19 @@ class KelasController extends Controller
     {
         //
         try{
+            $kelas = Kelas::findOrFail($id);
+            $validate = $request->validate([
+                'Id_guru' => 'required|exists:gurus,Id_guru',
+                'Nama_kelas' => 'required|string|max:255',
+                'Kode_kelas' => 'required|string|max:255',
+                'Deskripsi' => 'required|text|max:255',
+                'Tgl_buat' => 'required|date',
+            ]);
+            $kelas->update($validate);
+            return response()->json([
+                'type'=>'succes',
+                'data'=>$kelas,
+            ],201);
 
         }catch(\Exception $e){
             return response()->json([
@@ -100,6 +130,12 @@ class KelasController extends Controller
     {
         //
         try{
+            $kelas = Kelas::findOrFail($id);
+            $kelas->delete();
+            return response()->json([
+                'type'=>'succes',
+                'data'=>$kelas,
+            ],202);
 
         }catch(\Exception $e){
             return response()->json([

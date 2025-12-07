@@ -44,6 +44,17 @@ class GuruController extends Controller
     {
         //
         try{
+            $validate = $request->validate([
+                'Email' => 'required|email|unique:gurus',
+                'Password' => 'required|integer|max:11',
+                'Nama_guru' => 'required|string|max:255',
+                'Bidang_studi' => 'required|string|max:255',
+            ]);
+            $guru = Guru::create($validate);
+            return response()->json([
+                'type'=>'succes',
+                'data'=>$guru,
+            ],201);
 
         }catch(\Exception $e){
             return response()->json([
@@ -60,6 +71,11 @@ class GuruController extends Controller
     {
         //
         try{
+            $guru = Guru::findOrFail($id);
+            return response()->json([
+                'type'=>'succes',
+                'data'=>$guru,
+            ],201);
 
         }catch(\Exception $e){
             return response()->json([
@@ -84,6 +100,18 @@ class GuruController extends Controller
     {
         //
         try{
+            $guru = Guru::findOrFail($id);
+            $validate = $request->validate([
+                'Email' => 'required|email|unique:gurus',
+                'Password' => 'required|integer|max:11',
+                'Nama_guru' => 'required|string|max:255',
+                'Bidang_studi' => 'required|string|max:255',
+            ]);
+            $guru->update($validate);
+            return response()->json([
+                'type'=>'succes',
+                'data'=>$guru,
+            ],201);
 
         }catch(\Exception $e){
             return response()->json([
@@ -99,7 +127,13 @@ class GuruController extends Controller
     public function destroy(string $id)
     {
         //
-        try{
+        try{ 
+            $guru = Guru::findOrFail($id);
+            $guru->delete();
+            return response()->json([
+                'type'=>'succes',
+                'data'=>$guru,
+            ],202);
 
         }catch(\Exception $e){
             return response()->json([

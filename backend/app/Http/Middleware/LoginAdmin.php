@@ -15,6 +15,14 @@ class LoginAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
+        // return $next($request);
+        // if (!session()->has('loginAdmin')) {
+        //     return redirect()->route('loginAdmin');
+        // }
+        // return $next($request);
+        // if (session()->get('loginAdmin')['role'] !== 'admin') {
+        //     return redirect()->route('loginAdmin');
+        // }
         return $next($request);
     }
 }

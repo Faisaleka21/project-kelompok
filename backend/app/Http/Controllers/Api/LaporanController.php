@@ -44,6 +44,18 @@ class LaporanController extends Controller
     {
         //
         try{
+            $validate = $request->validate([
+                'Id_siswa' => 'required|exists:siswas,Id_siswa',
+                'Total_materi' => 'required|integer',
+                'Total_kuis' => 'required|integer',
+                'Rata_nilai' => 'required|float',
+                'Tgl_laporan' => 'required|date',
+            ]);
+            $laporan = Laporan::create($validate);
+            return response()->json([
+                'type'=>'succes',
+                'data'=>$laporan,
+            ],201);
 
         }catch(\Exception $e){
             return response()->json([
@@ -60,6 +72,11 @@ class LaporanController extends Controller
     {
         //
         try{
+            $laporan = Laporan::findOrFail($id);
+            return response()->json([
+                'type'=>'succes',
+                'data'=>$laporan,
+            ],201);
 
         }catch(\Exception $e){
             return response()->json([
@@ -75,14 +92,6 @@ class LaporanController extends Controller
     public function edit(string $id)
     {
         //
-        try{
-
-        }catch(\Exception $e){
-            return response()->json([
-                'message'=>$e->getMessage(),
-                'data'=>null
-            ],401);
-        }
     }
 
     /**
@@ -92,6 +101,19 @@ class LaporanController extends Controller
     {
         //
         try{
+            $laporan = Laporan::findOrFail($id);
+            $validate = $request->validate([
+                'Id_siswa' => 'required|exists:siswas,Id_siswa',
+                'Total_materi' => 'required|integer',
+                'Total_kuis' => 'required|integer',
+                'Rata_nilai' => 'required|float',
+                'Tgl_laporan' => 'required|date',
+            ]);
+            $laporan->update($validate);
+            return response()->json([
+                'type'=>'succes',
+                'data'=>$laporan,
+            ],201);
 
         }catch(\Exception $e){
             return response()->json([
@@ -108,7 +130,12 @@ class LaporanController extends Controller
     {
         //
         try{
-            
+            $laporan = Laporan::findOrFail($id);
+            $laporan->delete();
+            return response()->json([
+                'type'=>'succes',
+                'data'=>$laporan,
+            ],202);
 
         }catch(\Exception $e){
             return response()->json([
